@@ -1,4 +1,4 @@
-[data paths]
+ze[data paths]
 path_local =  ./DRIVE_datasets_training_testing/
 train_imgs_original = DRIVE_dataset_imgs_train.hdf5
 train_groundTruth = DRIVE_dataset_groundTruth_train.hdf5
