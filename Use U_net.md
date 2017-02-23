@@ -45,7 +45,7 @@ On windows
 <https://www.tensorflow.org/get_started/os_setup#pip_installation_on_windows>
 `pip install tensorflow`
 
-install the GPU version of TensorFlow (highly recommended, if you have a compatible NAVIA graphics)
+**install the GPU version of TensorFlow** (highly recommended, if you have a compatible NAVIA graphics, exam the compatible please ref <https://developer.nvidia.com/cuda-gpus>)
 
 `pip install tensorflow-gpu`   
 <http://www.netinstructions.com/how-to-install-and-run-gpu-enabled-tensorflow-on-windows/>
@@ -54,21 +54,20 @@ Not needed
 
 	pip install --upgrade https://storage.googleapis.com/tensorflow/windows/gpu/tensorflow_gpu-0.12.1-cp35-cp35m-win_amd64.whl
 --
-####Install CUDA Toolkit 8.0
-####Install cudNN
+####A.Install CUDA Toolkit 8.0
+####B.Install cudNN
 For this two part ref
 <http://www.netinstructions.com/how-to-install-and-run-gpu-enabled-tensorflow-on-windows/>
 
 --
 ###5.Install ConfigParser
-`pip install ConfigParser`
-in run_training.py change all ConfigParser to configparser (python 3.5 only)
-in ./scr/retinaNN_training.py change all ConfigParser to configparser (python 3.5 only)
+	pip install ConfigParser
 
 
 ###6.Install Keras
-`pip install keras`
-and then set "image_dim_ordering": "th" in the ~/.keras/keras.json to avoid the dimension dismatch
+	pip install keras
+
+and then **set "image_dim_ordering": "th" in the ~/.keras/keras.json to avoid the dimension dismatch**
 
 
 ###7.Install opecv
@@ -81,7 +80,7 @@ Download the wheel from
 `pip install opencv_python?3*win_amd64.whl`
 
 Ref
-https://www.scivision.co/install-opencv-python-windows/
+<https://www.scivision.co/install-opencv-python-windows/>
 
 
 Possible needed
@@ -90,38 +89,58 @@ Install h5py (for py 2.7)
 
 ------
 ##Possible issues:
-CUDA
+
+- Numpy
+
+	- ImportError: cannot import name add_newdocs.   
+	reinstall numpy use `conda install numpy `
+
+- Keras
+
+	- ImportError: No module named 'pydot'.   
+	- AttributeError: module 'pydot' has no attribute 'find_graphviz'.  
+ 
+	**first install graphviz and then install pydot**
+
+			conda install graphviz
+			pip install pydot-ng
+			pip install pydot
+
+
+	
+	- Failed to import pydot. You must install pydot and graphviz for pydotprint to work.    
+	go to
+	`~.\Anaconda3\lib\site-packages\keras\utils\visualize_util.py `(where you installed the keras)
+	and comment following codes
+
+			# if not pydot.find_graphviz():
+			   # raise ImportError('Failed to import pydot. You must install pydot'
+			                    # ' and graphviz for `pydotprint` to work.')
+
+
+
+
+
+	- GraphViz's executables not found
+	
+	ref <http://stackoverflow.com/questions/18438997/why-is-pydot-unable-to-find-graphvizs-executables-in-windows-8>
+	
+		1. Install GraphViz
+		2. Get the path for gvedit.exe
+		3. Add this path to the computer's PATH
+		4. One way to get to environment settings to set your path is to click on each of these button/menu options: start->computer->system properties->advanced settings->environment variables
+		5. Click Edit User path
+		6. Add this path to the computer's PATH
+		7. Add this string to the end of your Variable value list (including semicolon): ;C:\Program Files (x86)\Graphviz2.34\bin
+		8. Click OK
+		9. Restart your Python IDE/ command line tool
+
+
+- CUDA
 Failed call to cuInit: CUDA_ERROR_UNKNOWN
 
-Could not create cud handle: CUDNN_STATUS_NOT_INITIALIZED
+- Could not create cud handle: CUDNN_STATUS_NOT_INITIALIZED
 Update drivers?
-
-Numpy
-ImportError: cannot import name add_newdocs.   
-reinstall numpy use `conda install numpy `
-
-Keras
-ImportError: No module named 'pydot'.   
-
-	pip install pydot
-
-AttributeError: module 'pydot' has no attribute 'find_graphviz'.   
-	
-	conda install pydot-ng
-	conda install graphviz
-
-and go to
-`~.\Anaconda3\lib\site-packages\keras\utils\visualize_util.py `(where you installed the keras)
-and comment following codes
-
-	# if not pydot.find_graphviz():
-	   # raise ImportError('Failed to import pydot. You must install pydot'
-	                    # ' and graphviz for `pydotprint` to work.')
-
-
-ImportError: No module named pydot
-
-first install graphviz and then install pydot
 
 ---
 Exception: "dot.exe" not found in path.
