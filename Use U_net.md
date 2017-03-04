@@ -102,7 +102,7 @@ Install h5py (for py 2.7)
  
 	**first install graphviz and then install pydot**
 
-			conda install graphviz
+			pip install graphviz
 			pip install pydot-ng
 			pip install pydot
 
@@ -123,8 +123,8 @@ Install h5py (for py 2.7)
 
 	- GraphViz's executables not found
 	
-	ref <http://stackoverflow.com/questions/18438997/why-is-pydot-unable-to-find-graphvizs-executables-in-windows-8>
-	
+	ref <http://stackoverflow.com/questions/18438997/why-is-pydot-unable-to-find-graphvizs-executables-in-windows-8>    
+	Down load Garphviz at here <http://www.graphviz.org/Download_windows.php>
 		1. Install GraphViz
 		2. Get the path for gvedit.exe
 		3. Add this path to the computer's PATH
@@ -134,7 +134,7 @@ Install h5py (for py 2.7)
 		7. Add this string to the end of your Variable value list (including semicolon): ;C:\Program Files (x86)\Graphviz2.34\bin
 		8. Click OK
 		9. Restart your Python IDE/ command line tool
-
+	
 
 - CUDA
 Failed call to cuInit: CUDA_ERROR_UNKNOWN
@@ -142,6 +142,9 @@ Failed call to cuInit: CUDA_ERROR_UNKNOWN
 - Could not create cud handle: CUDNN_STATUS_NOT_INITIALIZED
 Update drivers?
 
+- Tensorflow 1.0.0
+“OpKernel ('op: ”BestSplits“ device_type: ”CPU“') for unknown op: BestSplits”      
+<https://github.com/tensorflow/tensorflow/issues/7500#issuecomment-280157912>
 ---
 Exception: "dot.exe" not found in path.
 add the dot.exe to system path
